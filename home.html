@@ -277,12 +277,32 @@
         rgba(0,0,0,0.55);
     }
 
+    .movie-poster {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.82;
+      transform: scale(1.01);
+      transition:
+        transform 0.45s ease,
+        opacity 0.3s ease;
+    }
+
+    .movie-card:hover .movie-poster {
+      transform: scale(1.055);
+      opacity: 0.9;
+    }
+
     .movie-card::before {
       content: "";
 
       position: absolute;
 
       inset: 0;
+      z-index: 1;
 
       background:
         radial-gradient(
@@ -339,6 +359,7 @@
 
     .play-button {
       position: absolute;
+      z-index: 3;
 
       right: 28px;
       bottom: 27px;
@@ -1007,6 +1028,53 @@
 
 
     /* =========================
+       MUX TOKENS
+    ========================= */
+
+    async function getMuxTokens(playbackId) {
+
+      const {
+        data: {
+          session: currentSession
+        }
+      } = await supabase.auth.getSession();
+
+      if (!currentSession) {
+        window.location.href = "index.html";
+        return null;
+      }
+
+      const {
+        data: functionData,
+        error: functionError
+      } = await supabase.functions.invoke(
+        "get-mux-token",
+        {
+          body: {
+            playbackId: playbackId
+          },
+          headers: {
+            Authorization:
+              `Bearer ${currentSession.access_token}`
+          }
+        }
+      );
+
+      if (functionError) {
+        throw functionError;
+      }
+
+      if (!functionData || !functionData.token) {
+        throw new Error(
+          "The Mux token function did not return a playback token."
+        );
+      }
+
+      return functionData;
+    }
+
+
+    /* =========================
        LOAD MOVIES
     ========================= */
 
@@ -1081,12 +1149,16 @@
               "div"
             );
 
-
           card.className =
             "movie-card";
 
-
           card.innerHTML = `
+
+            <img
+              class="movie-poster"
+              alt=""
+              loading="lazy"
+            >
 
             <div class="movie-content">
 
@@ -1114,12 +1186,60 @@
 
           `;
 
+          const poster =
+            card.querySelector(
+              ".movie-poster"
+            );
+
+          if (poster && movie.video_path) {
+
+            getMuxTokens(movie.video_path)
+              .then((functionData) => {
+
+                if (!functionData || !functionData.thumbnailToken) {
+                  return;
+                }
+
+                const thumbnailUrl =
+                  `https://image.mux.com/${
+                    encodeURIComponent(movie.video_path)
+                  }/thumbnail.jpg?token=${
+                    encodeURIComponent(functionData.thumbnailToken)
+                  }`;
+
+                poster.src = thumbnailUrl;
+
+              })
+              .catch((err) => {
+
+                console.warn(
+                  "Could not load Mux thumbnail for movie:",
+                  movie.title,
+                  err
+                );
+
+                // Keep the card's built-in dark gradient
+                // if the thumbnail cannot be loaded.
+                poster.remove();
+
+              });
+
+            poster.addEventListener(
+              "error",
+              () => poster.remove(),
+              { once: true }
+            );
+
+          } else if (poster) {
+
+            poster.remove();
+
+          }
 
           card.addEventListener(
             "click",
             () => openMovie(movie)
           );
-
 
           movieGrid.appendChild(
             card
@@ -1127,7 +1247,6 @@
 
         }
       );
-
     }
 
 
@@ -1165,90 +1284,20 @@
         }
 
 
-        /*
-          Get the CURRENT authenticated
-          session again.
-
-          We explicitly send its access
-          token to the Edge Function.
-        */
-
-        const {
-          data: {
-            session: currentSession
-          }
-        } =
-          await supabase.auth.getSession();
-
-
-        if (!currentSession) {
-
-          window.location.href =
-            "index.html";
-
-          return;
-
-        }
-
-
         console.log(
           "Requesting Mux token..."
         );
 
+        const functionData =
+          await getMuxTokens(playbackId);
 
-        /*
-          Request the signed Mux token.
-        */
-
-        const {
-          data: functionData,
-          error: functionError
-        } =
-          await supabase.functions.invoke(
-            "get-mux-token",
-            {
-
-              body: {
-                playbackId:
-                  playbackId
-              },
-
-              headers: {
-                Authorization:
-                  `Bearer ${currentSession.access_token}`
-              }
-
-            }
-          );
-
-
-        if (functionError) {
-
-          console.error(
-            "get-mux-token error:",
-            functionError
-          );
-
-          throw functionError;
-
+        if (!functionData) {
+          return;
         }
-
 
         console.log(
           "Mux token response received."
         );
-
-
-        if (
-          !functionData ||
-          !functionData.token
-        ) {
-
-          throw new Error(
-            "The Mux token function did not return a token."
-          );
-
-        }
 
 
         /*
@@ -1280,7 +1329,10 @@
         muxPlayer.tokens = {
 
           playback:
-            functionData.token
+            functionData.token,
+
+          thumbnail:
+            functionData.thumbnailToken
 
         };
 
