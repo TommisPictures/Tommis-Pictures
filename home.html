@@ -873,6 +873,7 @@
         id="muxPlayer"
         controls
         playsinline
+        preload="none"
       ></mux-player>
 
     </div>
@@ -1017,7 +1018,36 @@
       "click",
       async () => {
 
-        await supabase.auth.signOut();
+        logoutButton.disabled = true;
+        logoutButton.textContent = "Logging out...";
+
+        try {
+
+          const { error } =
+            await supabase.auth.signOut({
+              scope: "local"
+            });
+
+          if (error) {
+            throw error;
+          }
+
+        } catch (err) {
+
+          console.error(
+            "Logout error:",
+            err
+          );
+
+          logoutButton.disabled = false;
+          logoutButton.textContent = "Log out";
+
+          alert(
+            "Could not log out. Please check your internet connection and try again."
+          );
+
+          return;
+        }
 
         window.location.href =
           "index.html";
@@ -1251,24 +1281,26 @@
 
         muxPlayer.pause();
 
+        /*
+          Clear the previous movie first.
+        */
+
         muxPlayer.removeAttribute(
           "playback-id"
         );
 
-
-        /*
-          Set the new signed playback.
-        */
-
-        muxPlayer.setAttribute(
-          "playback-id",
-          playbackId
-        );
+        muxPlayer.playbackToken = undefined;
+        muxPlayer.thumbnailToken = undefined;
 
 
         /*
-          Give Mux Player the signed
-          playback token.
+          IMPORTANT:
+          Give Mux Player the signed tokens
+          BEFORE giving it the playback ID.
+          This prevents the player from trying
+          to request the signed stream without
+          its token, which is especially important
+          on mobile browsers.
         */
 
         muxPlayer.tokens = {
@@ -1283,8 +1315,18 @@
 
 
         /*
-          Tell the player to load
-          the new movie.
+          Now set the signed playback ID.
+        */
+
+        muxPlayer.setAttribute(
+          "playback-id",
+          playbackId
+        );
+
+
+        /*
+          Explicitly load the movie after both
+          the playback ID and signed tokens exist.
         */
 
         muxPlayer.load();
