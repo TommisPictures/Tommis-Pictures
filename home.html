@@ -902,21 +902,21 @@
       "sb_publishable_CA0HNiZaQfpBno0-vLmtSw_Kv97V1b9";
 
 
-    const supabase =
-      createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-      );
-
-
     /* =========================
-       CUSTOM MOVIE THUMBNAILS
+       MOVIE THUMBNAILS
     ========================= */
 
     const MOVIE_THUMBNAILS = [
       "https://i.imgur.com/yKmaze5.jpg",
       "https://i.imgur.com/S8zTESb.jpg"
     ];
+
+
+    const supabase =
+      createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
 
 
     /* =========================
@@ -1155,13 +1155,14 @@
 
             <img
               class="movie-poster"
+              src="${MOVIE_THUMBNAILS[index] || ""}"
               alt=""
               loading="lazy"
             >
 
             <div class="movie-content">
 
-              <div class="movie-title">
+                <div class="movie-title">
                 ${escapeHtml(movie.title)}
               </div>
 
@@ -1179,25 +1180,6 @@
             </div>
 
           `;
-
-          const poster =
-            card.querySelector(
-              ".movie-poster"
-            );
-
-          if (poster) {
-
-            poster.src =
-              MOVIE_THUMBNAILS[index] ||
-              "";
-
-            poster.addEventListener(
-              "error",
-              () => poster.remove(),
-              { once: true }
-            );
-
-          }
 
           card.addEventListener(
             "click",
@@ -1275,18 +1257,14 @@
 
 
         /*
-          Set the new signed playback.
-        */
+          Give Mux Player the signed tokens
+          BEFORE setting the playback ID.
 
-        muxPlayer.setAttribute(
-          "playback-id",
-          playbackId
-        );
-
-
-        /*
-          Give Mux Player the signed
-          playback token.
+          Setting playback-id starts the media
+          source setup. On the first opening,
+          especially on mobile Safari, the player
+          can begin that setup before a token
+          assigned afterward is available.
         */
 
         muxPlayer.tokens = {
@@ -1298,6 +1276,16 @@
             functionData.thumbnailToken
 
         };
+
+
+        /*
+          Now set the new signed playback.
+        */
+
+        muxPlayer.setAttribute(
+          "playback-id",
+          playbackId
+        );
 
 
         /*
