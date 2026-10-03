@@ -327,6 +327,17 @@
       z-index: 2;
     }
 
+    .movie-number {
+      color:
+        rgba(255,255,255,0.35);
+
+      font-size: 12px;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 8px;
+    }
+
     .movie-title {
       font-size: 28px;
 
@@ -873,7 +884,6 @@
         id="muxPlayer"
         controls
         playsinline
-        preload="none"
       ></mux-player>
 
     </div>
@@ -901,16 +911,6 @@
 
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_CA0HNiZaQfpBno0-vLmtSw_Kv97V1b9";
-
-
-    /* =========================
-       MOVIE THUMBNAILS
-    ========================= */
-
-    const MOVIE_THUMBNAILS = [
-      "https://i.imgur.com/yKmaze5.jpg",
-      "https://i.imgur.com/S8zTESb.jpg"
-    ];
 
 
     const supabase =
@@ -1018,34 +1018,13 @@
       "click",
       async () => {
 
-        logoutButton.disabled = true;
-        logoutButton.textContent = "Logging out...";
+        const { error: logoutError } =
+          await supabase.auth.signOut({
+            scope: "local"
+          });
 
-        try {
-
-          const { error } =
-            await supabase.auth.signOut({
-              scope: "local"
-            });
-
-          if (error) {
-            throw error;
-          }
-
-        } catch (err) {
-
-          console.error(
-            "Logout error:",
-            err
-          );
-
-          logoutButton.disabled = false;
-          logoutButton.textContent = "Log out";
-
-          alert(
-            "Could not log out. Please check your internet connection and try again."
-          );
-
+        if (logoutError) {
+          console.error("Logout error:", logoutError);
           return;
         }
 
@@ -1185,14 +1164,18 @@
 
             <img
               class="movie-poster"
-              src="${MOVIE_THUMBNAILS[index] || ""}"
               alt=""
               loading="lazy"
             >
 
             <div class="movie-content">
 
-                <div class="movie-title">
+              <div class="movie-number">
+                MOVIE
+                ${String(index + 1).padStart(2, "0")}
+              </div>
+
+              <div class="movie-title">
                 ${escapeHtml(movie.title)}
               </div>
 
@@ -1210,6 +1193,56 @@
             </div>
 
           `;
+
+          const poster =
+            card.querySelector(
+              ".movie-poster"
+            );
+
+          if (poster && movie.video_path) {
+
+            getMuxTokens(movie.video_path)
+              .then((functionData) => {
+
+                if (!functionData || !functionData.thumbnailToken) {
+                  return;
+                }
+
+                const thumbnailUrl =
+                  `https://image.mux.com/${
+                    encodeURIComponent(movie.video_path)
+                  }/thumbnail.jpg?token=${
+                    encodeURIComponent(functionData.thumbnailToken)
+                  }`;
+
+                poster.src = thumbnailUrl;
+
+              })
+              .catch((err) => {
+
+                console.warn(
+                  "Could not load Mux thumbnail for movie:",
+                  movie.title,
+                  err
+                );
+
+                // Keep the card's built-in dark gradient
+                // if the thumbnail cannot be loaded.
+                poster.remove();
+
+              });
+
+            poster.addEventListener(
+              "error",
+              () => poster.remove(),
+              { once: true }
+            );
+
+          } else if (poster) {
+
+            poster.remove();
+
+          }
 
           card.addEventListener(
             "click",
@@ -1281,26 +1314,24 @@
 
         muxPlayer.pause();
 
-        /*
-          Clear the previous movie first.
-        */
-
         muxPlayer.removeAttribute(
           "playback-id"
         );
 
-        muxPlayer.playbackToken = undefined;
-        muxPlayer.thumbnailToken = undefined;
+
+        /*
+          Set the new signed playback.
+        */
+
+        muxPlayer.setAttribute(
+          "playback-id",
+          playbackId
+        );
 
 
         /*
-          IMPORTANT:
-          Give Mux Player the signed tokens
-          BEFORE giving it the playback ID.
-          This prevents the player from trying
-          to request the signed stream without
-          its token, which is especially important
-          on mobile browsers.
+          Give Mux Player the signed
+          playback token.
         */
 
         muxPlayer.tokens = {
@@ -1315,18 +1346,8 @@
 
 
         /*
-          Now set the signed playback ID.
-        */
-
-        muxPlayer.setAttribute(
-          "playback-id",
-          playbackId
-        );
-
-
-        /*
-          Explicitly load the movie after both
-          the playback ID and signed tokens exist.
+          Tell the player to load
+          the new movie.
         */
 
         muxPlayer.load();
