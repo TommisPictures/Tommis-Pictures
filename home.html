@@ -873,7 +873,6 @@
         id="muxPlayer"
         controls
         playsinline
-        preload="none"
       ></mux-player>
 
     </div>
@@ -903,21 +902,21 @@
       "sb_publishable_CA0HNiZaQfpBno0-vLmtSw_Kv97V1b9";
 
 
+    const supabase =
+      createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
     /* =========================
-       MOVIE THUMBNAILS
+       CUSTOM MOVIE THUMBNAILS
     ========================= */
 
     const MOVIE_THUMBNAILS = [
       "https://i.imgur.com/yKmaze5.jpg",
       "https://i.imgur.com/S8zTESb.jpg"
     ];
-
-
-    const supabase =
-      createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-      );
 
 
     /* =========================
@@ -981,15 +980,6 @@
 
 
     /* =========================
-       MOBILE PLAYBACK RETRY
-    ========================= */
-
-    let currentPlaybackId = null;
-    let currentMuxTokens = null;
-    let playbackRetryUsed = false;
-
-
-    /* =========================
        AUTH CHECK
     ========================= */
 
@@ -1027,36 +1017,7 @@
       "click",
       async () => {
 
-        logoutButton.disabled = true;
-        logoutButton.textContent = "Logging out...";
-
-        try {
-
-          const { error } =
-            await supabase.auth.signOut({
-              scope: "local"
-            });
-
-          if (error) {
-            throw error;
-          }
-
-        } catch (err) {
-
-          console.error(
-            "Logout error:",
-            err
-          );
-
-          logoutButton.disabled = false;
-          logoutButton.textContent = "Log out";
-
-          alert(
-            "Could not log out. Please check your internet connection and try again."
-          );
-
-          return;
-        }
+        await supabase.auth.signOut();
 
         window.location.href =
           "index.html";
@@ -1194,14 +1155,13 @@
 
             <img
               class="movie-poster"
-              src="${MOVIE_THUMBNAILS[index] || ""}"
               alt=""
               loading="lazy"
             >
 
             <div class="movie-content">
 
-                <div class="movie-title">
+              <div class="movie-title">
                 ${escapeHtml(movie.title)}
               </div>
 
@@ -1219,6 +1179,25 @@
             </div>
 
           `;
+
+          const poster =
+            card.querySelector(
+              ".movie-poster"
+            );
+
+          if (poster) {
+
+            poster.src =
+              MOVIE_THUMBNAILS[index] ||
+              "";
+
+            poster.addEventListener(
+              "error",
+              () => poster.remove(),
+              { once: true }
+            );
+
+          }
 
           card.addEventListener(
             "click",
@@ -1258,9 +1237,6 @@
         const playbackId =
           movie.video_path;
 
-        currentPlaybackId = playbackId;
-        playbackRetryUsed = false;
-
 
         if (!playbackId) {
 
@@ -1278,8 +1254,6 @@
         const functionData =
           await getMuxTokens(playbackId);
 
-        currentMuxTokens = functionData;
-
         if (!functionData) {
           return;
         }
@@ -1295,26 +1269,24 @@
 
         muxPlayer.pause();
 
-        /*
-          Clear the previous movie first.
-        */
-
         muxPlayer.removeAttribute(
           "playback-id"
         );
 
-        muxPlayer.playbackToken = undefined;
-        muxPlayer.thumbnailToken = undefined;
+
+        /*
+          Set the new signed playback.
+        */
+
+        muxPlayer.setAttribute(
+          "playback-id",
+          playbackId
+        );
 
 
         /*
-          IMPORTANT:
-          Give Mux Player the signed tokens
-          BEFORE giving it the playback ID.
-          This prevents the player from trying
-          to request the signed stream without
-          its token, which is especially important
-          on mobile browsers.
+          Give Mux Player the signed
+          playback token.
         */
 
         muxPlayer.tokens = {
@@ -1329,18 +1301,8 @@
 
 
         /*
-          Now set the signed playback ID.
-        */
-
-        muxPlayer.setAttribute(
-          "playback-id",
-          playbackId
-        );
-
-
-        /*
-          Explicitly load the movie after both
-          the playback ID and signed tokens exist.
+          Tell the player to load
+          the new movie.
         */
 
         muxPlayer.load();
@@ -1432,77 +1394,6 @@
           "Mux Player error:",
           event
         );
-
-        /*
-          Mobile browsers can occasionally fail the
-          first media initialization even though the
-          signed Mux setup is valid. Retry the exact
-          same signed playback once automatically.
-        */
-
-        if (
-          !playbackRetryUsed &&
-          currentPlaybackId &&
-          currentMuxTokens
-        ) {
-
-          playbackRetryUsed = true;
-
-          playerLoading.classList.add(
-            "active"
-          );
-
-          setTimeout(() => {
-
-            try {
-
-              muxPlayer.pause();
-
-              muxPlayer.removeAttribute(
-                "playback-id"
-              );
-
-              muxPlayer.playbackToken = undefined;
-              muxPlayer.thumbnailToken = undefined;
-
-              muxPlayer.tokens = {
-
-                playback:
-                  currentMuxTokens.token,
-
-                thumbnail:
-                  currentMuxTokens.thumbnailToken
-
-              };
-
-              muxPlayer.setAttribute(
-                "playback-id",
-                currentPlaybackId
-              );
-
-              muxPlayer.load();
-
-              console.log(
-                "Mux Player first-load recovery retry..."
-              );
-
-            } catch (retryError) {
-
-              console.error(
-                "Mux Player recovery retry failed:",
-                retryError
-              );
-
-              playerLoading.classList.remove(
-                "active"
-              );
-
-            }
-
-          }, 250);
-
-          return;
-        }
 
         playerLoading.classList.remove(
           "active"
