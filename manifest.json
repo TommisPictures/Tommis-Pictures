@@ -1,7 +1,7 @@
 
 {
   "name": "Tommis Pictures",
-  "short_name": "Tommis",
+  "short_name": "Tommis Pictures",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
