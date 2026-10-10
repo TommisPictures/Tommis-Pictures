@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,26 +27,15 @@
       overflow-x: hidden;
     }
 
-    /* =========================
-       BACKGROUND
-    ========================= */
+    /* BACKGROUND */
 
     .background {
       position: fixed;
       inset: 0;
       z-index: -2;
-
       background:
-        radial-gradient(
-          circle at 50% -10%,
-          rgba(80, 80, 80, 0.22),
-          transparent 45%
-        ),
-        radial-gradient(
-          circle at 10% 40%,
-          rgba(40, 40, 40, 0.15),
-          transparent 40%
-        ),
+        radial-gradient(circle at 50% -10%, rgba(80,80,80,0.22), transparent 45%),
+        radial-gradient(circle at 10% 40%, rgba(40,40,40,0.15), transparent 40%),
         #050505;
     }
 
@@ -53,51 +43,28 @@
       content: "";
       position: absolute;
       inset: 0;
-
       background-image:
-        linear-gradient(
-          rgba(255,255,255,0.018) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,0.018) 1px,
-          transparent 1px
-        );
-
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
       background-size: 45px 45px;
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          black,
-          transparent 75%
-        );
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
     }
 
-    /* =========================
-       HEADER
-    ========================= */
+    /* HEADER */
 
     header {
       height: 82px;
       width: 100%;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       padding: 0 42px;
-
       position: sticky;
       top: 0;
       z-index: 50;
-
-      background: rgba(5, 5, 5, 0.72);
-
+      background: rgba(5,5,5,0.72);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
@@ -120,284 +87,163 @@
 
     .logout {
       border: 1px solid rgba(255,255,255,0.13);
-
       background: rgba(255,255,255,0.055);
-
       color: white;
-
       padding: 10px 16px;
-
       border-radius: 9px;
-
       cursor: pointer;
-
-      transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
 
     .logout:hover {
       background: rgba(255,255,255,0.11);
-
-      border-color:
-        rgba(255,255,255,0.24);
-
-      transform:
-        translateY(-1px);
+      border-color: rgba(255,255,255,0.24);
+      transform: translateY(-1px);
     }
 
-    /* =========================
-       HERO
-    ========================= */
+    /* HERO */
 
     .hero {
       max-width: 1400px;
-
       margin: 0 auto;
-
-      padding:
-        75px
-        42px
-        40px;
+      padding: 75px 42px 40px;
     }
 
     .hero-small {
       color: rgba(255,255,255,0.5);
-
       text-transform: uppercase;
-
       letter-spacing: 3px;
-
       font-size: 12px;
-
       margin-bottom: 15px;
     }
 
     .hero h1 {
       margin: 0;
-
-      font-size:
-        clamp(38px, 5vw, 68px);
-
+      font-size: clamp(38px, 5vw, 68px);
       letter-spacing: -2px;
-
       line-height: 1;
-
       font-weight: 700;
     }
 
     .hero p {
       max-width: 620px;
-
       margin-top: 22px;
-
-      color:
-        rgba(255,255,255,0.55);
-
+      color: rgba(255,255,255,0.55);
       font-size: 16px;
-
       line-height: 1.7;
     }
 
-    /* =========================
-       MOVIES
-    ========================= */
+    /* MOVIES */
 
     .movies-section {
       max-width: 1400px;
-
       margin: 0 auto;
-
-      padding:
-        30px
-        42px
-        70px;
+      padding: 30px 42px 70px;
     }
 
     .section-title {
       font-size: 21px;
-
       font-weight: 600;
-
       margin-bottom: 22px;
     }
 
     .movie-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 26px;
     }
 
     .movie-card {
       position: relative;
-
       min-height: 310px;
-
       border-radius: 16px;
-
       overflow: hidden;
-
       cursor: pointer;
-
-      background:
-        linear-gradient(
-          135deg,
-          #171717,
-          #090909
-        );
-
-      border:
-        1px solid
-        rgba(255,255,255,0.07);
-
-      box-shadow:
-        0 20px 60px
-        rgba(0,0,0,0.35);
-
-      transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+      background: linear-gradient(135deg, #171717, #090909);
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .movie-card:hover {
-      transform:
-        translateY(-6px)
-        scale(1.008);
-
-      border-color:
-        rgba(255,255,255,0.18);
-
-      box-shadow:
-        0 28px 80px
-        rgba(0,0,0,0.55);
+      transform: translateY(-6px) scale(1.008);
+      border-color: rgba(255,255,255,0.18);
+      box-shadow: 0 28px 80px rgba(0,0,0,0.55);
     }
 
     .movie-poster {
       position: absolute;
-
       inset: 0;
-
       z-index: 0;
-
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
       opacity: 0.82;
-
       transform: scale(1.01);
-
-      transition:
-        transform 0.45s ease,
-        opacity 0.3s ease;
+      transition: transform 0.45s ease, opacity 0.3s ease;
     }
 
     .movie-card:hover .movie-poster {
       transform: scale(1.055);
-
       opacity: 0.9;
     }
 
     .movie-card::before {
       content: "";
-
       position: absolute;
-
       inset: 0;
-
       z-index: 1;
-
       background:
-        radial-gradient(
-          circle at 75% 20%,
-          rgba(255,255,255,0.08),
-          transparent 35%
-        ),
-        linear-gradient(
-          to bottom,
-          transparent 35%,
-          rgba(0,0,0,0.92) 100%
-        );
+        radial-gradient(circle at 75% 20%, rgba(255,255,255,0.08), transparent 35%),
+        linear-gradient(to bottom, transparent 35%, rgba(0,0,0,0.92) 100%);
     }
 
     .movie-content {
       position: absolute;
-
       left: 30px;
       right: 30px;
-
       bottom: 27px;
-
       z-index: 2;
     }
 
     .movie-title {
       font-size: 28px;
-
       font-weight: 650;
-
       margin-bottom: 8px;
     }
 
     .movie-description {
       max-width: 600px;
-
-      color:
-        rgba(255,255,255,0.57);
-
+      color: rgba(255,255,255,0.57);
       font-size: 14px;
-
       line-height: 1.5;
     }
 
     .play-button {
       position: absolute;
-
       z-index: 3;
-
       right: 28px;
       bottom: 27px;
-
       width: 52px;
       height: 52px;
-
       border-radius: 50%;
-
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       background: white;
-
       color: black;
-
       font-size: 18px;
-
       opacity: 0;
-
       transform: scale(0.8);
-
-      transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
+      transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
     .movie-card:hover .play-button {
       opacity: 1;
-
       transform: scale(1);
     }
 
-    /* =========================
-       FAVOURITES SECTION
-    ========================= */
+    /* FAVOURITES */
 
     #favoritesSection {
       display: none;
@@ -405,476 +251,314 @@
 
     .favorites-empty {
       padding: 30px;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.07);
-
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: 14px;
-
-      background:
-        rgba(255,255,255,0.025);
-
-      color:
-        rgba(255,255,255,0.42);
-
+      background: rgba(255,255,255,0.025);
+      color: rgba(255,255,255,0.42);
       font-size: 14px;
     }
 
-    /* =========================
-       LOADING
-    ========================= */
+    /* LOADING */
 
     .loading {
       padding: 80px 20px;
-
       text-align: center;
-
-      color:
-        rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.4);
     }
 
     .spinner {
       width: 30px;
       height: 30px;
-
-      margin:
-        0 auto 16px;
-
-      border:
-        3px solid
-        rgba(255,255,255,0.12);
-
+      margin: 0 auto 16px;
+      border: 3px solid rgba(255,255,255,0.12);
       border-top-color: white;
-
       border-radius: 50%;
-
-      animation:
-        spin 0.8s linear infinite;
+      animation: spin 0.8s linear infinite;
     }
 
     @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+      to { transform: rotate(360deg); }
     }
 
-    /* =========================
-       MOVIE DETAILS MODAL
-    ========================= */
+    /* FULL-SCREEN MOVIE DETAILS */
 
     .details-overlay {
       position: fixed;
-
       inset: 0;
-
       z-index: 80;
-
       display: none;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 30px;
-
-      background:
-        rgba(0,0,0,0.84);
-
-      backdrop-filter: blur(16px);
-
-      -webkit-backdrop-filter:
-        blur(16px);
+      background: #050505;
+      overflow-y: auto;
     }
 
     .details-overlay.active {
-      display: flex;
-
-      animation:
-        fadeIn 0.25s ease;
+      display: block;
+      animation: fadeIn 0.3s ease;
     }
 
     .details-container {
       position: relative;
-
-      width:
-        min(1050px, 100%);
-
-      max-height:
-        calc(100vh - 60px);
-
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
       overflow: hidden;
-
-      border-radius: 18px;
-
-      background:
-        #101010;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.09);
-
-      box-shadow:
-        0 35px 120px
-        rgba(0,0,0,0.8);
-
-      animation:
-        detailsIn 0.3s ease;
-
-      display: grid;
-
-      grid-template-columns:
-        1.05fr 1fr;
+      background: #050505;
+      display: flex;
+      flex-direction: column;
+      animation: detailsIn 0.35s ease;
     }
 
     .details-image {
-      position: relative;
-
-      min-height: 500px;
-
-      background: #090909;
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #080808;
+      overflow: hidden;
     }
 
     .details-image img {
       width: 100%;
       height: 100%;
-
+      min-height: 100vh;
+      min-height: 100dvh;
       object-fit: cover;
-
+      object-position: center 30%;
       display: block;
+      opacity: 0.62;
+      filter: saturate(0.85);
+      transform: scale(1.02);
     }
 
     .details-image::after {
       content: "";
-
       position: absolute;
-
       inset: 0;
-
       background:
         linear-gradient(
           to right,
-          transparent 50%,
-          #101010 100%
+          rgba(5,5,5,0.88) 0%,
+          rgba(5,5,5,0.62) 42%,
+          rgba(5,5,5,0.12) 100%
+        ),
+        linear-gradient(
+          to top,
+          #050505 0%,
+          rgba(5,5,5,0.82) 15%,
+          transparent 70%
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.45),
+          transparent 25%
         );
     }
 
     .details-content {
-      padding: 55px 50px;
-
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
+      padding: clamp(100px, 15vh, 150px) clamp(28px, 8vw, 120px) 70px;
       display: flex;
-
       flex-direction: column;
-
       justify-content: center;
+      align-items: flex-start;
     }
 
     .details-label {
-      color:
-        rgba(255,255,255,0.42);
-
+      color: rgba(255,255,255,0.75);
       text-transform: uppercase;
-
-      letter-spacing: 2.5px;
-
-      font-size: 11px;
-
-      margin-bottom: 14px;
+      letter-spacing: 4px;
+      font-size: 12px;
+      margin-bottom: 22px;
     }
 
     .details-title {
-      font-size:
-        clamp(32px, 4vw, 52px);
-
-      line-height: 1.05;
-
-      letter-spacing: -1.5px;
-
-      margin: 0 0 15px;
-
-      font-weight: 700;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 1.02;
+      letter-spacing: -2.5px;
+      max-width: 850px;
+      margin: 0 0 20px;
+      font-weight: 750;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.35);
     }
 
     .details-meta {
-      color:
-        rgba(255,255,255,0.52);
-
-      font-size: 14px;
-
-      margin-bottom: 24px;
+      color: rgba(255,255,255,0.8);
+      font-size: 15px;
+      margin-bottom: 25px;
     }
 
     .details-description {
-      color:
-        rgba(255,255,255,0.63);
-
-      font-size: 15px;
-
-      line-height: 1.75;
-
-      max-width: 520px;
-
-      margin-bottom: 32px;
+      color: rgba(255,255,255,0.78);
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 620px;
+      margin-bottom: 36px;
+      white-space: pre-line;
     }
 
     .details-actions {
       display: flex;
-
       align-items: center;
-
-      gap: 12px;
-
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .details-play {
       border: 0;
-
       border-radius: 9px;
-
       background: white;
-
       color: #050505;
-
-      padding:
-        13px
-        21px;
-
-      font-size: 14px;
-
-      font-weight: 650;
-
+      padding: 15px 28px;
+      font-size: 15px;
+      font-weight: 700;
       cursor: pointer;
-
-      transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease;
     }
 
     .details-play:hover {
-      transform:
-        translateY(-2px);
-
-      opacity: 0.88;
+      background: #e6e6e6;
+      transform: translateY(-2px);
     }
 
     .favorite-button {
-      border:
-        1px solid
-        rgba(255,255,255,0.14);
-
+      border: 1px solid rgba(255,255,255,0.24);
       border-radius: 9px;
-
-      background:
-        rgba(255,255,255,0.055);
-
+      background: rgba(20,20,20,0.68);
       color: white;
-
-      padding:
-        12px
-        18px;
-
+      padding: 14px 22px;
       font-size: 14px;
-
       cursor: pointer;
-
-      transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
 
     .favorite-button:hover {
-      background:
-        rgba(255,255,255,0.11);
-
-      border-color:
-        rgba(255,255,255,0.24);
-
-      transform:
-        translateY(-2px);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.45);
+      transform: translateY(-2px);
     }
 
     .favorite-button.favorited {
-      background:
-        rgba(255,255,255,0.13);
-
-      border-color:
-        rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.35);
     }
+
+    /* BACK TO HOME */
 
     .close-details {
       position: absolute;
-
-      top: 16px;
-      right: 16px;
-
+      top: 28px;
+      left: clamp(20px, 4vw, 55px);
       z-index: 20;
-
-      width: 40px;
-      height: 40px;
-
-      border: 0;
-
-      border-radius: 50%;
-
-      background:
-        rgba(0,0,0,0.62);
-
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      min-height: 44px;
+      padding: 10px 17px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 9px;
+      background: rgba(0,0,0,0.42);
       color: white;
-
-      font-size: 21px;
-
+      font-size: 14px;
+      font-weight: 600;
       cursor: pointer;
-
-      transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
 
     .close-details:hover {
-      background:
-        rgba(255,255,255,0.18);
-
-      transform:
-        rotate(90deg);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.4);
+      transform: translateX(-2px);
     }
 
     @keyframes detailsIn {
       from {
         opacity: 0;
-
-        transform:
-          scale(0.96)
-          translateY(14px);
+        transform: scale(1.01);
       }
-
       to {
         opacity: 1;
-
-        transform:
-          scale(1)
-          translateY(0);
+        transform: scale(1);
       }
     }
 
-    /* =========================
-       PLAYER
-    ========================= */
+    /* PLAYER — PRESERVED */
 
     .player-overlay {
       position: fixed;
-
       inset: 0;
-
       z-index: 100;
-
       display: none;
-
       align-items: center;
       justify-content: center;
-
       padding: 35px;
-
-      background:
-        rgba(0,0,0,0.90);
-
+      background: rgba(0,0,0,0.90);
       backdrop-filter: blur(12px);
-
-      -webkit-backdrop-filter:
-        blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .player-overlay.active {
       display: flex;
-
-      animation:
-        fadeIn 0.25s ease;
+      animation: fadeIn 0.25s ease;
     }
 
     .player-container {
       position: relative;
-
-      width:
-        min(1200px, 100%);
-
+      width: min(1200px, 100%);
       background: #000;
-
       border-radius: 14px;
-
       overflow: hidden;
-
-      box-shadow:
-        0 30px 120px
-        rgba(0,0,0,0.75);
-
-      animation:
-        playerIn 0.3s ease;
+      box-shadow: 0 30px 120px rgba(0,0,0,0.75);
+      animation: playerIn 0.3s ease;
     }
 
     mux-player {
       display: block;
-
       width: 100%;
-
       aspect-ratio: 16 / 9;
     }
 
     .close-player {
       position: absolute;
-
       top: 14px;
       right: 14px;
-
       z-index: 20;
-
       width: 40px;
       height: 40px;
-
       border: 0;
-
       border-radius: 50%;
-
-      background:
-        rgba(0,0,0,0.7);
-
+      background: rgba(0,0,0,0.7);
       color: white;
-
       font-size: 20px;
-
       cursor: pointer;
-
-      transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
     .close-player:hover {
-      background:
-        rgba(255,255,255,0.18);
-
-      transform:
-        rotate(90deg);
+      background: rgba(255,255,255,0.18);
+      transform: rotate(90deg);
     }
 
     .player-loading {
       position: absolute;
-
       inset: 0;
-
       z-index: 5;
-
       display: none;
-
       align-items: center;
       justify-content: center;
-
       flex-direction: column;
-
       background: #000;
-
-      color:
-        rgba(255,255,255,0.6);
-
+      color: rgba(255,255,255,0.6);
       pointer-events: none;
     }
 
@@ -885,39 +569,23 @@
     .player-spinner {
       width: 38px;
       height: 38px;
-
       margin-bottom: 16px;
-
-      border:
-        3px solid
-        rgba(255,255,255,0.15);
-
+      border: 3px solid rgba(255,255,255,0.15);
       border-top-color: white;
-
       border-radius: 50%;
-
-      animation:
-        spin 0.8s linear infinite;
+      animation: spin 0.8s linear infinite;
     }
 
     .player-error {
       position: absolute;
-
       inset: 0;
-
       z-index: 6;
-
       display: none;
-
       align-items: center;
       justify-content: center;
-
       flex-direction: column;
-
       padding: 30px;
-
       background: #000;
-
       text-align: center;
     }
 
@@ -927,90 +595,52 @@
 
     .player-error-title {
       font-size: 21px;
-
       font-weight: 600;
-
       margin-bottom: 10px;
     }
 
     .player-error-text {
       max-width: 500px;
-
-      color:
-        rgba(255,255,255,0.5);
-
+      color: rgba(255,255,255,0.5);
       line-height: 1.6;
-
       font-size: 14px;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes playerIn {
       from {
         opacity: 0;
-
-        transform:
-          scale(0.96)
-          translateY(12px);
+        transform: scale(0.96) translateY(12px);
       }
-
       to {
         opacity: 1;
-
-        transform:
-          scale(1)
-          translateY(0);
+        transform: scale(1) translateY(0);
       }
     }
 
-    /* =========================
-       GENERAL ERROR
-    ========================= */
+    /* GENERAL ERROR */
 
     .error {
       display: none;
-
-      margin:
-        30px auto;
-
+      margin: 30px auto;
       max-width: 700px;
-
-      padding:
-        18px 20px;
-
-      border:
-        1px solid
-        rgba(255,80,80,0.2);
-
+      padding: 18px 20px;
+      border: 1px solid rgba(255,80,80,0.2);
       border-radius: 10px;
-
-      background:
-        rgba(255,50,50,0.06);
-
-      color:
-        rgba(255,180,180,0.9);
-
+      background: rgba(255,50,50,0.06);
+      color: rgba(255,180,180,0.9);
       text-align: center;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+    /* MOBILE */
 
     @media (max-width: 800px) {
-
       header {
         padding: 0 20px;
-
         height: 70px;
       }
 
@@ -1023,17 +653,11 @@
       }
 
       .hero {
-        padding:
-          55px
-          22px
-          25px;
+        padding: 55px 22px 25px;
       }
 
       .movies-section {
-        padding:
-          25px
-          22px
-          55px;
+        padding: 25px 22px 55px;
       }
 
       .movie-grid {
@@ -1046,60 +670,93 @@
 
       .play-button {
         opacity: 1;
-
         transform: scale(1);
       }
 
       .details-overlay {
-        padding: 10px;
+        padding: 0;
       }
 
       .details-container {
-        display: block;
-
-        max-height:
-          calc(100vh - 20px);
-
-        overflow-y: auto;
+        display: flex;
+        min-height: 100vh;
+        min-height: 100dvh;
+        max-height: none;
+        overflow: hidden;
       }
 
       .details-image {
-        height: 300px;
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
 
-        min-height: 0;
+      .details-image img {
+        min-height: 100vh;
+        min-height: 100dvh;
+        object-position: center;
       }
 
       .details-image::after {
         background:
           linear-gradient(
             to bottom,
-            transparent 45%,
-            #101010 100%
+            rgba(0,0,0,0.48) 0%,
+            transparent 25%,
+            rgba(5,5,5,0.55) 45%,
+            #050505 100%
           );
       }
 
       .details-content {
-        padding:
-          25px
-          25px
-          35px;
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 100px 24px 42px;
+        justify-content: flex-end;
+      }
+
+      .details-label {
+        font-size: 10px;
+        letter-spacing: 3px;
+        margin-bottom: 14px;
       }
 
       .details-title {
-        font-size: 34px;
+        font-size: clamp(38px, 10vw, 56px);
+        letter-spacing: -1.5px;
+        margin-bottom: 14px;
+      }
+
+      .details-meta {
+        font-size: 13px;
+        margin-bottom: 17px;
       }
 
       .details-description {
         font-size: 14px;
+        line-height: 1.65;
+        margin-bottom: 25px;
       }
 
       .details-actions {
         width: 100%;
+        gap: 10px;
       }
 
       .details-play,
       .favorite-button {
         flex: 1;
+        padding: 13px 12px;
+        font-size: 13px;
+      }
+
+      .close-details {
+        top: 20px;
+        left: 18px;
+        min-height: 42px;
+        padding: 9px 13px;
       }
 
       .player-overlay {
@@ -1108,43 +765,18 @@
     }
   </style>
 
-
   <!-- Tommis Pictures home-screen icon -->
-  <link
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="/icon.png"
-  >
-
-  <link
-    rel="icon"
-    type="image/png"
-    href="/icon.png"
-  >
-
-  <link
-    rel="manifest"
-    href="/manifest.json?v=2"
-  >
-
-  <meta
-    name="theme-color"
-    content="#000000"
-  >
-
+  <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+  <link rel="icon" type="image/png" href="/icon.png">
+  <link rel="manifest" href="/manifest.json?v=2">
+  <meta name="theme-color" content="#000000">
 </head>
 
 <body>
-
   <div class="background"></div>
 
-
-  <!-- =========================
-       HEADER
-  ========================= -->
-
+  <!-- HEADER -->
   <header>
-
     <img
       class="logo"
       src="https://i.imgur.com/YFk1Xr9.png"
@@ -1152,297 +784,131 @@
     >
 
     <div class="header-right">
-
-      <span
-        class="welcome"
-        id="welcomeText"
-      >
-        Welcome
-      </span>
-
-      <button
-        class="logout"
-        id="logoutButton"
-      >
-        Log out
-      </button>
-
+      <span class="welcome" id="welcomeText">Welcome</span>
+      <button class="logout" id="logoutButton">Log out</button>
     </div>
-
   </header>
 
-
-  <!-- =========================
-       MAIN
-  ========================= -->
-
+  <!-- MAIN -->
   <main>
-
     <section class="hero">
-
-      <div class="hero-small">
-        TOMMIS PICTURES
-      </div>
-
-      <h1>
-        Your collection.
-      </h1>
-
+      <div class="hero-small">TOMMIS PICTURES</div>
+      <h1>Your collection.</h1>
       <p>
         Welcome to your private Tommis Pictures
         library. Select a movie below to explore
         its details and start watching.
       </p>
-
     </section>
 
-
-    <!-- =========================
-         FAVOURITES
-    ========================= -->
-
-    <section
-      class="movies-section"
-      id="favoritesSection"
-    >
-
-      <div class="section-title">
-        My Favourites
-      </div>
-
-      <div
-        id="favoritesGrid"
-        class="movie-grid"
-      ></div>
-
-      <div
-        id="favoritesEmpty"
-        class="favorites-empty"
-      >
+    <!-- FAVOURITES -->
+    <section class="movies-section" id="favoritesSection">
+      <div class="section-title">My Favourites</div>
+      <div id="favoritesGrid" class="movie-grid"></div>
+      <div id="favoritesEmpty" class="favorites-empty">
         You haven't added any movies to your
         favourites yet.
       </div>
-
     </section>
 
-
-    <!-- =========================
-         MOVIES
-    ========================= -->
-
+    <!-- MOVIES -->
     <section class="movies-section">
+      <div class="section-title">Movies</div>
 
-      <div class="section-title">
-        Movies
-      </div>
-
-      <div
-        id="loading"
-        class="loading"
-      >
-
+      <div id="loading" class="loading">
         <div class="spinner"></div>
-
         Loading your movies...
-
       </div>
 
-      <div
-        id="movieGrid"
-        class="movie-grid"
-      ></div>
-
-      <div
-        id="error"
-        class="error"
-      ></div>
-
+      <div id="movieGrid" class="movie-grid"></div>
+      <div id="error" class="error"></div>
     </section>
 
-
-    <!-- =========================
-         MUSIC VIDEOS
-    ========================= -->
-
+    <!-- MUSIC VIDEOS -->
     <section class="movies-section music-section">
-
-      <div class="section-title">
-        Music Videos
-      </div>
-
-      <div
-        id="musicGrid"
-        class="movie-grid"
-      ></div>
-
+      <div class="section-title">Music Videos</div>
+      <div id="musicGrid" class="movie-grid"></div>
     </section>
-
   </main>
 
-
-  <!-- =========================
-       MOVIE DETAILS MODAL
-  ========================= -->
-
-  <div
-    id="detailsOverlay"
-    class="details-overlay"
-  >
-
+  <!-- FULL-SCREEN MOVIE DETAILS -->
+  <div id="detailsOverlay" class="details-overlay">
     <div class="details-container">
 
       <button
         class="close-details"
         id="closeDetails"
-        aria-label="Close movie details"
+        aria-label="Back to Home"
       >
-        ×
+        <span aria-hidden="true">←</span>
+        <span>Back to Home</span>
       </button>
 
-
       <div class="details-image">
-
-        <img
-          id="detailsImage"
-          src=""
-          alt=""
-        >
-
+        <img id="detailsImage" src="" alt="">
       </div>
 
-
       <div class="details-content">
+        <div class="details-label">Tommis Pictures</div>
 
-        <div class="details-label">
-          Tommis Pictures
-        </div>
+        <h2 id="detailsTitle" class="details-title">Movie</h2>
 
-        <h2
-          id="detailsTitle"
-          class="details-title"
-        >
-          Movie
-        </h2>
-
-        <div
-          id="detailsMeta"
-          class="details-meta"
-        >
+        <div id="detailsMeta" class="details-meta">
           Production year
         </div>
 
-        <div
-          id="detailsDescription"
-          class="details-description"
-        >
+        <div id="detailsDescription" class="details-description">
           Ready to watch.
         </div>
 
-
         <div class="details-actions">
-
-          <button
-            id="detailsPlay"
-            class="details-play"
-          >
+          <button id="detailsPlay" class="details-play">
             ▶ Play
           </button>
 
-          <button
-            id="favoriteButton"
-            class="favorite-button"
-          >
+          <button id="favoriteButton" class="favorite-button">
             ♡ Add to Favourites
           </button>
-
         </div>
-
       </div>
-
     </div>
-
   </div>
 
-
-  <!-- =========================
-       PLAYER MODAL
-  ========================= -->
-
-  <div
-    id="playerOverlay"
-    class="player-overlay"
-  >
-
+  <!-- PLAYER MODAL — PRESERVED -->
+  <div id="playerOverlay" class="player-overlay">
     <div class="player-container">
 
       <button
         class="close-player"
         id="closePlayer"
         aria-label="Close player"
-      >
-        ×
-      </button>
+      >×</button>
 
-
-      <div
-        id="playerLoading"
-        class="player-loading"
-      >
-
+      <div id="playerLoading" class="player-loading">
         <div class="player-spinner"></div>
-
-        <div>
-          Preparing movie...
-        </div>
-
+        <div>Preparing movie...</div>
       </div>
 
-
-      <div
-        id="playerError"
-        class="player-error"
-      >
-
+      <div id="playerError" class="player-error">
         <div class="player-error-title">
           Unable to play this movie
         </div>
-
-        <div
-          id="playerErrorText"
-          class="player-error-text"
-        >
-          Something went wrong while preparing
-          the video.
+        <div id="playerErrorText" class="player-error-text">
+          Something went wrong while preparing the video.
         </div>
-
       </div>
 
-
-      <mux-player
-        id="muxPlayer"
-        controls
-        playsinline
-      ></mux-player>
-
+      <mux-player id="muxPlayer" controls playsinline></mux-player>
     </div>
-
   </div>
 
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
-
+  <!-- JAVASCRIPT -->
   <script type="module">
-
     import {
       createClient
     } from "https://esm.sh/@supabase/supabase-js@2";
 
-
-    /* =========================
-       SUPABASE
-    ========================= */
+    /* SUPABASE */
 
     const SUPABASE_URL =
       "https://pyzlmehyxajxpkpsrtkv.supabase.co";
@@ -1450,10 +916,7 @@
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_CA0HNiZaQfpBno0-vLmtSw_Kv97V1b9";
 
-
-    /* =========================
-       MOVIE THUMBNAILS
-    ========================= */
+    /* MOVIE THUMBNAILS */
 
     const MOVIE_THUMBNAILS = [
       "https://i.imgur.com/yKmaze5.jpg",
@@ -1461,233 +924,86 @@
       "https://i.imgur.com/OqCrP3B.jpeg"
     ];
 
-
-    const supabase =
-      createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-      );
-
-
-    /* =========================
-       ELEMENTS
-    ========================= */
-
-    const loading =
-      document.getElementById(
-        "loading"
-      );
-
-    const movieGrid =
-      document.getElementById(
-        "movieGrid"
-      );
-
-    const musicGrid =
-      document.getElementById(
-        "musicGrid"
-      );
-
-    const favoritesSection =
-      document.getElementById(
-        "favoritesSection"
-      );
-
-    const favoritesGrid =
-      document.getElementById(
-        "favoritesGrid"
-      );
-
-    const favoritesEmpty =
-      document.getElementById(
-        "favoritesEmpty"
-      );
-
-    const errorBox =
-      document.getElementById(
-        "error"
-      );
-
-    const welcomeText =
-      document.getElementById(
-        "welcomeText"
-      );
-
-    const logoutButton =
-      document.getElementById(
-        "logoutButton"
-      );
-
-
-    /* =========================
-       DETAILS ELEMENTS
-    ========================= */
-
-    const detailsOverlay =
-      document.getElementById(
-        "detailsOverlay"
-      );
-
-    const closeDetails =
-      document.getElementById(
-        "closeDetails"
-      );
-
-    const detailsImage =
-      document.getElementById(
-        "detailsImage"
-      );
-
-    const detailsTitle =
-      document.getElementById(
-        "detailsTitle"
-      );
-
-    const detailsMeta =
-      document.getElementById(
-        "detailsMeta"
-      );
-
-    const detailsDescription =
-      document.getElementById(
-        "detailsDescription"
-      );
-
-    const detailsPlay =
-      document.getElementById(
-        "detailsPlay"
-      );
-
-    const favoriteButton =
-      document.getElementById(
-        "favoriteButton"
-      );
-
-
-    /* =========================
-       PLAYER ELEMENTS
-    ========================= */
-
-    const playerOverlay =
-      document.getElementById(
-        "playerOverlay"
-      );
-
-    const closePlayer =
-      document.getElementById(
-        "closePlayer"
-      );
-
-    const muxPlayer =
-      document.getElementById(
-        "muxPlayer"
-      );
-
-    const playerLoading =
-      document.getElementById(
-        "playerLoading"
-      );
-
-    const playerError =
-      document.getElementById(
-        "playerError"
-      );
-
-    const playerErrorText =
-      document.getElementById(
-        "playerErrorText"
-      );
-
-
-    /* =========================
-       STATE
-    ========================= */
-
-    let currentUser = null;
-
-    let currentMovie = null;
-
-    let allMovies = [];
-
-    let favoriteMovieIds =
-      new Set();
-
-
-    /* =========================
-       AUTH CHECK
-    ========================= */
-
-    const {
-      data: {
-        session
-      }
-    } =
-      await supabase.auth.getSession();
-
-
-    if (!session) {
-
-      window.location.href =
-        "index.html";
-
-    } else {
-
-      currentUser =
-        session.user;
-
-      const email =
-        session.user.email ||
-        "Member";
-
-      welcomeText.textContent =
-        `Welcome, ${email}`;
-
-      await loadMovies();
-
-      await loadFavorites();
-
-    }
-
-
-    /* =========================
-       LOGOUT
-    ========================= */
-
-    logoutButton.addEventListener(
-      "click",
-      async () => {
-
-        await supabase.auth.signOut();
-
-        window.location.href =
-          "index.html";
-
-      }
+    const supabase = createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
     );
 
+    /* ELEMENTS */
 
-    /* =========================
-       MUX TOKENS
-    ========================= */
+    const loading = document.getElementById("loading");
+    const movieGrid = document.getElementById("movieGrid");
+    const musicGrid = document.getElementById("musicGrid");
+    const favoritesSection = document.getElementById("favoritesSection");
+    const favoritesGrid = document.getElementById("favoritesGrid");
+    const favoritesEmpty = document.getElementById("favoritesEmpty");
+    const errorBox = document.getElementById("error");
+    const welcomeText = document.getElementById("welcomeText");
+    const logoutButton = document.getElementById("logoutButton");
+
+    /* DETAILS ELEMENTS */
+
+    const detailsOverlay = document.getElementById("detailsOverlay");
+    const closeDetails = document.getElementById("closeDetails");
+    const detailsImage = document.getElementById("detailsImage");
+    const detailsTitle = document.getElementById("detailsTitle");
+    const detailsMeta = document.getElementById("detailsMeta");
+    const detailsDescription = document.getElementById("detailsDescription");
+    const detailsPlay = document.getElementById("detailsPlay");
+    const favoriteButton = document.getElementById("favoriteButton");
+
+    /* PLAYER ELEMENTS */
+
+    const playerOverlay = document.getElementById("playerOverlay");
+    const closePlayer = document.getElementById("closePlayer");
+    const muxPlayer = document.getElementById("muxPlayer");
+    const playerLoading = document.getElementById("playerLoading");
+    const playerError = document.getElementById("playerError");
+    const playerErrorText = document.getElementById("playerErrorText");
+
+    /* STATE */
+
+    let currentUser = null;
+    let currentMovie = null;
+    let allMovies = [];
+    let favoriteMovieIds = new Set();
+
+    /* AUTH CHECK */
+
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      window.location.href = "index.html";
+    } else {
+      currentUser = session.user;
+
+      const email = session.user.email || "Member";
+      welcomeText.textContent = `Welcome, ${email}`;
+
+      await loadMovies();
+      await loadFavorites();
+    }
+
+    /* LOGOUT */
+
+    logoutButton.addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      window.location.href = "index.html";
+    });
+
+    /* MUX TOKENS — PRESERVED */
 
     async function getMuxTokens(playbackId) {
-
       const {
-        data: {
-          session: currentSession
-        }
+        data: { session: currentSession }
       } = await supabase.auth.getSession();
 
-
       if (!currentSession) {
-
-        window.location.href =
-          "index.html";
-
+        window.location.href = "index.html";
         return null;
-
       }
-
 
       const {
         data: functionData,
@@ -1698,7 +1014,6 @@
           body: {
             playbackId: playbackId
           },
-
           headers: {
             Authorization:
               `Bearer ${currentSession.access_token}`
@@ -1706,160 +1021,77 @@
         }
       );
 
-
       if (functionError) {
         throw functionError;
       }
 
-
-      if (
-        !functionData ||
-        !functionData.token
-      ) {
-
+      if (!functionData || !functionData.token) {
         throw new Error(
           "The Mux token function did not return a playback token."
         );
-
       }
 
-
       return functionData;
-
     }
 
-
-    /* =========================
-       LOAD MOVIES
-    ========================= */
+    /* LOAD MOVIES */
 
     async function loadMovies() {
-
-      loading.style.display =
-        "block";
-
-      errorBox.style.display =
-        "none";
-
+      loading.style.display = "block";
+      errorBox.style.display = "none";
 
       const {
         data,
         error
-      } =
-        await supabase
-          .from("movies")
-          .select("*")
-          .order(
-            "created_at",
-            {
-              ascending: true
-            }
-          );
+      } = await supabase
+        .from("movies")
+        .select("*")
+        .order("created_at", {
+          ascending: true
+        });
 
-
-      loading.style.display =
-        "none";
-
+      loading.style.display = "none";
 
       if (error) {
-
-        console.error(
-          "Movie loading error:",
-          error
-        );
-
+        console.error("Movie loading error:", error);
         errorBox.textContent =
           "Could not load your movie library.";
-
-        errorBox.style.display =
-          "block";
-
+        errorBox.style.display = "block";
         return;
-
       }
 
-
-      allMovies =
-        data || [];
-
-
+      allMovies = data || [];
       movieGrid.innerHTML = "";
-
       musicGrid.innerHTML = "";
 
-
-      if (
-        !data ||
-        data.length === 0
-      ) {
-
+      if (!data || data.length === 0) {
         errorBox.textContent =
           "No movies have been added yet.";
-
-        errorBox.style.display =
-          "block";
-
+        errorBox.style.display = "block";
         return;
-
       }
 
+      data.forEach((movie, index) => {
+        const card = createMovieCard(movie, index);
 
-      data.forEach(
-        (movie, index) => {
+        /* First two entries are Movies.
+           Third entry is Music Videos. */
 
-          const card =
-            createMovieCard(
-              movie,
-              index
-            );
-
-
-          /*
-            First two entries are Movies.
-            Third entry is Music Videos.
-          */
-
-          if (index < 2) {
-
-            movieGrid.appendChild(
-              card
-            );
-
-          } else {
-
-            musicGrid.appendChild(
-              card
-            );
-
-          }
-
+        if (index < 2) {
+          movieGrid.appendChild(card);
+        } else {
+          musicGrid.appendChild(card);
         }
-      );
-
+      });
     }
 
+    /* CREATE MOVIE CARD */
 
-    /* =========================
-       CREATE MOVIE CARD
-    ========================= */
-
-    function createMovieCard(
-      movie,
-      index
-    ) {
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-
-      card.className =
-        "movie-card";
-
+    function createMovieCard(movie, index) {
+      const card = document.createElement("div");
+      card.className = "movie-card";
 
       card.innerHTML = `
-
         <img
           class="movie-poster"
           src="${MOVIE_THUMBNAILS[index] || ""}"
@@ -1868,803 +1100,328 @@
         >
 
         <div class="movie-content">
-
           <div class="movie-title">
             ${escapeHtml(movie.title)}
           </div>
 
           <div class="movie-description">
-            ${escapeHtml(
-              movie.description ||
-              "Ready to watch."
-            )}
+            ${escapeHtml(movie.description || "Ready to watch.")}
           </div>
-
         </div>
 
-        <div class="play-button">
-          ▶
-        </div>
-
+        <div class="play-button">▶</div>
       `;
 
-
-      card.addEventListener(
-        "click",
-        () => openMovieDetails(movie)
-      );
-
+      card.addEventListener("click", () => openMovieDetails(movie));
 
       return card;
-
     }
 
-
-    /* =========================
-       LOAD FAVOURITES
-    ========================= */
+    /* LOAD FAVOURITES */
 
     async function loadFavorites() {
-
       if (!currentUser) {
         return;
       }
 
-
       const {
         data,
         error
-      } =
-        await supabase
-          .from("favorites")
-          .select("movie_id")
-          .eq(
-            "user_id",
-            currentUser.id
-          );
-
+      } = await supabase
+        .from("favorites")
+        .select("movie_id")
+        .eq("user_id", currentUser.id);
 
       if (error) {
-
-        console.error(
-          "Favourite loading error:",
-          error
-        );
-
-        /*
-          We don't break the rest of
-          the website if favourites
-          haven't been configured yet.
-        */
-
-        favoritesSection.style.display =
-          "none";
-
+        console.error("Favourite loading error:", error);
+        favoritesSection.style.display = "none";
         return;
-
       }
 
-
-      favoriteMovieIds =
-        new Set(
-          (data || []).map(
-            item => item.movie_id
-          )
-        );
-
-
-      renderFavorites();
-
-    }
-
-
-    /* =========================
-       RENDER FAVOURITES
-    ========================= */
-
-    function renderFavorites() {
-
-      favoritesGrid.innerHTML = "";
-
-
-      const favoriteMovies =
-        allMovies.filter(
-          movie =>
-            favoriteMovieIds.has(
-              movie.id
-            )
-        );
-
-
-      if (
-        favoriteMovies.length === 0
-      ) {
-
-        favoritesSection.style.display =
-          "block";
-
-        favoritesEmpty.style.display =
-          "block";
-
-        return;
-
-      }
-
-
-      favoritesSection.style.display =
-        "block";
-
-      favoritesEmpty.style.display =
-        "none";
-
-
-      favoriteMovies.forEach(
-        movie => {
-
-          const index =
-            allMovies.indexOf(
-              movie
-            );
-
-
-          const card =
-            createMovieCard(
-              movie,
-              index
-            );
-
-
-          favoritesGrid.appendChild(
-            card
-          );
-
-        }
+      favoriteMovieIds = new Set(
+        (data || []).map(item => item.movie_id)
       );
 
+      renderFavorites();
     }
 
+    /* RENDER FAVOURITES */
 
-    /* =========================
-       OPEN MOVIE DETAILS
-    ========================= */
+    function renderFavorites() {
+      favoritesGrid.innerHTML = "";
 
-    function openMovieDetails(movie) {
+      const favoriteMovies = allMovies.filter(
+        movie => favoriteMovieIds.has(movie.id)
+      );
 
-      currentMovie =
-        movie;
-
-
-      const index =
-        allMovies.indexOf(
-          movie
-        );
-
-
-      detailsImage.src =
-        MOVIE_THUMBNAILS[index] ||
-        "";
-
-
-      detailsImage.alt =
-        movie.title || "";
-
-
-      detailsTitle.textContent =
-        movie.title ||
-        "Untitled";
-
-
-      if (
-        movie.production_year
-      ) {
-
-        detailsMeta.textContent =
-          String(
-            movie.production_year
-          );
-
-      } else {
-
-        detailsMeta.textContent =
-          "Production year not set";
-
+      if (favoriteMovies.length === 0) {
+        favoritesSection.style.display = "block";
+        favoritesEmpty.style.display = "block";
+        return;
       }
 
+      favoritesSection.style.display = "block";
+      favoritesEmpty.style.display = "none";
+
+      favoriteMovies.forEach(movie => {
+        const index = allMovies.indexOf(movie);
+        const card = createMovieCard(movie, index);
+        favoritesGrid.appendChild(card);
+      });
+    }
+
+    /* OPEN MOVIE DETAILS */
+
+    function openMovieDetails(movie) {
+      currentMovie = movie;
+
+      const index = allMovies.indexOf(movie);
+
+      detailsImage.src = MOVIE_THUMBNAILS[index] || "";
+      detailsImage.alt = movie.title || "";
+
+      detailsTitle.textContent = movie.title || "Untitled";
+
+      if (movie.production_year) {
+        detailsMeta.textContent = String(movie.production_year);
+      } else {
+        detailsMeta.textContent = "Production year not set";
+      }
 
       detailsDescription.textContent =
-        movie.description ||
-        "Ready to watch.";
-
+        movie.description || "Ready to watch.";
 
       updateFavoriteButton();
 
-
-      detailsOverlay.classList.add(
-        "active"
-      );
-
-
-      document.body.style.overflow =
-        "hidden";
-
+      detailsOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
     }
 
-
-    /* =========================
-       UPDATE FAVOURITE BUTTON
-    ========================= */
+    /* UPDATE FAVOURITE BUTTON */
 
     function updateFavoriteButton() {
-
       if (!currentMovie) {
         return;
       }
 
-
-      const isFavorite =
-        favoriteMovieIds.has(
-          currentMovie.id
-        );
-
+      const isFavorite = favoriteMovieIds.has(currentMovie.id);
 
       if (isFavorite) {
-
-        favoriteButton.textContent =
-          "♥ Remove from Favourites";
-
-        favoriteButton.classList.add(
-          "favorited"
-        );
-
+        favoriteButton.textContent = "♥ Remove from Favourites";
+        favoriteButton.classList.add("favorited");
       } else {
-
-        favoriteButton.textContent =
-          "♡ Add to Favourites";
-
-        favoriteButton.classList.remove(
-          "favorited"
-        );
-
+        favoriteButton.textContent = "♡ Add to Favourites";
+        favoriteButton.classList.remove("favorited");
       }
-
     }
 
+    /* TOGGLE FAVOURITE */
 
-    /* =========================
-       TOGGLE FAVOURITE
-    ========================= */
-
-    favoriteButton.addEventListener(
-      "click",
-      async () => {
-
-        if (
-          !currentUser ||
-          !currentMovie
-        ) {
-
-          return;
-
-        }
-
-
-        const movieId =
-          currentMovie.id;
-
-
-        const isFavorite =
-          favoriteMovieIds.has(
-            movieId
-          );
-
-
-        favoriteButton.disabled =
-          true;
-
-
-        try {
-
-          if (isFavorite) {
-
-            const {
-              error
-            } =
-              await supabase
-                .from("favorites")
-                .delete()
-                .eq(
-                  "user_id",
-                  currentUser.id
-                )
-                .eq(
-                  "movie_id",
-                  movieId
-                );
-
-
-            if (error) {
-              throw error;
-            }
-
-
-            favoriteMovieIds.delete(
-              movieId
-            );
-
-
-          } else {
-
-            const {
-              error
-            } =
-              await supabase
-                .from("favorites")
-                .insert({
-
-                  user_id:
-                    currentUser.id,
-
-                  movie_id:
-                    movieId
-
-                });
-
-
-            if (error) {
-              throw error;
-            }
-
-
-            favoriteMovieIds.add(
-              movieId
-            );
-
-          }
-
-
-          updateFavoriteButton();
-
-          renderFavorites();
-
-
-        } catch (error) {
-
-          console.error(
-            "Favourite update error:",
-            error
-          );
-
-
-          alert(
-            "Could not update your favourites. Please try again."
-          );
-
-        } finally {
-
-          favoriteButton.disabled =
-            false;
-
-        }
-
+    favoriteButton.addEventListener("click", async () => {
+      if (!currentUser || !currentMovie) {
+        return;
       }
-    );
 
+      const movieId = currentMovie.id;
+      const isFavorite = favoriteMovieIds.has(movieId);
 
-    /* =========================
-       CLOSE DETAILS
-    ========================= */
-
-    function closeMovieDetails() {
-
-      detailsOverlay.classList.remove(
-        "active"
-      );
-
-
-      currentMovie =
-        null;
-
-
-      document.body.style.overflow =
-        "";
-
-    }
-
-
-    closeDetails.addEventListener(
-      "click",
-      closeMovieDetails
-    );
-
-
-    detailsOverlay.addEventListener(
-      "click",
-      event => {
-
-        if (
-          event.target ===
-          detailsOverlay
-        ) {
-
-          closeMovieDetails();
-
-        }
-
-      }
-    );
-
-
-    /* =========================
-       PLAY FROM DETAILS
-    ========================= */
-
-    detailsPlay.addEventListener(
-      "click",
-      () => {
-
-        if (!currentMovie) {
-          return;
-        }
-
-
-        const movieToPlay =
-          currentMovie;
-
-
-        closeMovieDetails();
-
-
-        openMovie(
-          movieToPlay
-        );
-
-      }
-    );
-
-
-    /* =========================
-       OPEN MOVIE
-    ========================= */
-
-    async function openMovie(movie) {
-
-      playerOverlay.classList.add(
-        "active"
-      );
-
-      playerLoading.classList.add(
-        "active"
-      );
-
-      playerError.classList.remove(
-        "active"
-      );
-
-
-      document.body.style.overflow =
-        "hidden";
-
+      favoriteButton.disabled = true;
 
       try {
+        if (isFavorite) {
+          const { error } = await supabase
+            .from("favorites")
+            .delete()
+            .eq("user_id", currentUser.id)
+            .eq("movie_id", movieId);
 
-        const playbackId =
-          movie.video_path;
+          if (error) {
+            throw error;
+          }
 
+          favoriteMovieIds.delete(movieId);
+        } else {
+          const { error } = await supabase
+            .from("favorites")
+            .insert({
+              user_id: currentUser.id,
+              movie_id: movieId
+            });
+
+          if (error) {
+            throw error;
+          }
+
+          favoriteMovieIds.add(movieId);
+        }
+
+        updateFavoriteButton();
+        renderFavorites();
+      } catch (error) {
+        console.error("Favourite update error:", error);
+        alert("Could not update your favourites. Please try again.");
+      } finally {
+        favoriteButton.disabled = false;
+      }
+    });
+
+    /* CLOSE DETAILS — BACK TO HOME */
+
+    function closeMovieDetails() {
+      detailsOverlay.classList.remove("active");
+      currentMovie = null;
+      document.body.style.overflow = "";
+    }
+
+    closeDetails.addEventListener("click", closeMovieDetails);
+
+    detailsOverlay.addEventListener("click", event => {
+      if (event.target === detailsOverlay) {
+        closeMovieDetails();
+      }
+    });
+
+    /* PLAY FROM DETAILS */
+
+    detailsPlay.addEventListener("click", () => {
+      if (!currentMovie) {
+        return;
+      }
+
+      const movieToPlay = currentMovie;
+
+      closeMovieDetails();
+      openMovie(movieToPlay);
+    });
+
+    /* OPEN MOVIE — MUX SEQUENCE PRESERVED */
+
+    async function openMovie(movie) {
+      playerOverlay.classList.add("active");
+      playerLoading.classList.add("active");
+      playerError.classList.remove("active");
+
+      document.body.style.overflow = "hidden";
+
+      try {
+        const playbackId = movie.video_path;
 
         if (!playbackId) {
-
           throw new Error(
             "This movie does not have a Mux playback ID."
           );
-
         }
 
+        console.log("Requesting Mux token...");
 
-        console.log(
-          "Requesting Mux token..."
-        );
-
-
-        const functionData =
-          await getMuxTokens(
-            playbackId
-          );
-
+        const functionData = await getMuxTokens(playbackId);
 
         if (!functionData) {
           return;
         }
 
-
-        console.log(
-          "Mux token response received."
-        );
-
+        console.log("Mux token response received.");
 
         /*
-          Clear the previous player.
-
-          IMPORTANT:
-          This is the existing working
-          Mux sequence.
+          Existing working Mux sequence.
+          Do not change this initialization.
         */
 
         muxPlayer.pause();
-
-        muxPlayer.removeAttribute(
-          "playback-id"
-        );
-
-
-        /*
-          Set the new signed playback.
-        */
-
-        muxPlayer.setAttribute(
-          "playback-id",
-          playbackId
-        );
-
-
-        /*
-          Give Mux Player the signed
-          playback token.
-        */
+        muxPlayer.removeAttribute("playback-id");
+        muxPlayer.setAttribute("playback-id", playbackId);
 
         muxPlayer.tokens = {
-
-          playback:
-            functionData.token,
-
-          thumbnail:
-            functionData.thumbnailToken
-
+          playback: functionData.token,
+          thumbnail: functionData.thumbnailToken
         };
-
-
-        /*
-          Tell the player to load
-          the new movie.
-        */
 
         muxPlayer.load();
 
-
-        console.log(
-          "Mux Player loading movie..."
-        );
-
-
+        console.log("Mux Player loading movie...");
       } catch (err) {
+        console.error("Movie playback error:", err);
 
-        console.error(
-          "Movie playback error:",
-          err
-        );
-
-
-        playerLoading.classList.remove(
-          "active"
-        );
-
+        playerLoading.classList.remove("active");
 
         playerErrorText.textContent =
           err?.message ||
           "Something went wrong while preparing the video.";
 
-
-        playerError.classList.add(
-          "active"
-        );
-
-
+        playerError.classList.add("active");
         return;
-
       }
-
     }
 
+    /* PLAYER EVENTS */
 
-    /* =========================
-       PLAYER EVENTS
-    ========================= */
+    muxPlayer.addEventListener("loadstart", () => {
+      playerLoading.classList.add("active");
+    });
 
-    muxPlayer.addEventListener(
-      "loadstart",
-      () => {
+    muxPlayer.addEventListener("canplay", () => {
+      playerLoading.classList.remove("active");
+    });
 
-        playerLoading.classList.add(
-          "active"
-        );
+    muxPlayer.addEventListener("playing", () => {
+      playerLoading.classList.remove("active");
+      playerError.classList.remove("active");
+    });
 
-      }
-    );
+    muxPlayer.addEventListener("error", event => {
+      console.error("Mux Player error:", event);
+      playerLoading.classList.remove("active");
+    });
 
-
-    muxPlayer.addEventListener(
-      "canplay",
-      () => {
-
-        playerLoading.classList.remove(
-          "active"
-        );
-
-      }
-    );
-
-
-    muxPlayer.addEventListener(
-      "playing",
-      () => {
-
-        playerLoading.classList.remove(
-          "active"
-        );
-
-        playerError.classList.remove(
-          "active"
-        );
-
-      }
-    );
-
-
-    muxPlayer.addEventListener(
-      "error",
-      event => {
-
-        console.error(
-          "Mux Player error:",
-          event
-        );
-
-        playerLoading.classList.remove(
-          "active"
-        );
-
-      }
-    );
-
-
-    /* =========================
-       CLOSE PLAYER
-    ========================= */
+    /* CLOSE PLAYER */
 
     function closeMovie() {
-
       try {
-
         muxPlayer.pause();
-
       } catch {}
 
+      muxPlayer.removeAttribute("playback-id");
 
-      muxPlayer.removeAttribute(
-        "playback-id"
-      );
+      playerLoading.classList.remove("active");
+      playerError.classList.remove("active");
+      playerOverlay.classList.remove("active");
 
-
-      playerLoading.classList.remove(
-        "active"
-      );
-
-
-      playerError.classList.remove(
-        "active"
-      );
-
-
-      playerOverlay.classList.remove(
-        "active"
-      );
-
-
-      document.body.style.overflow =
-        "";
-
+      document.body.style.overflow = "";
     }
 
+    closePlayer.addEventListener("click", closeMovie);
 
-    closePlayer.addEventListener(
-      "click",
-      closeMovie
-    );
+    playerOverlay.addEventListener("click", event => {
+      if (event.target === playerOverlay) {
+        closeMovie();
+      }
+    });
 
+    /* KEYBOARD CONTROLS */
 
-    playerOverlay.addEventListener(
-      "click",
-      event => {
-
-        if (
-          event.target ===
-          playerOverlay
-        ) {
-
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        if (playerOverlay.classList.contains("active")) {
           closeMovie();
-
+          return;
         }
 
-      }
-    );
-
-
-    /* =========================
-       KEYBOARD CONTROLS
-    ========================= */
-
-    document.addEventListener(
-      "keydown",
-      event => {
-
-        if (
-          event.key === "Escape"
-        ) {
-
-          if (
-            playerOverlay.classList.contains(
-              "active"
-            )
-          ) {
-
-            closeMovie();
-
-            return;
-
-          }
-
-
-          if (
-            detailsOverlay.classList.contains(
-              "active"
-            )
-          ) {
-
-            closeMovieDetails();
-
-          }
-
+        if (detailsOverlay.classList.contains("active")) {
+          closeMovieDetails();
         }
-
       }
-    );
+    });
 
-
-    /* =========================
-       HTML ESCAPING
-    ========================= */
+    /* HTML ESCAPING */
 
     function escapeHtml(value) {
-
       return String(value)
-
-        .replaceAll(
-          "&",
-          "&amp;"
-        )
-
-        .replaceAll(
-          "<",
-          "&lt;"
-        )
-
-        .replaceAll(
-          ">",
-          "&gt;"
-        )
-
-        .replaceAll(
-          '"',
-          "&quot;"
-        )
-
-        .replaceAll(
-          "'",
-          "&#039;"
-        );
-
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
     }
-
   </script>
-
 </body>
 </html>
